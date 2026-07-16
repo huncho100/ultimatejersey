@@ -1,11 +1,23 @@
+import Container from '../components/ui/Container';
+
 export default function Home() {
   return (
-    <section className="flex flex-col items-center justify-center text-center py-20 bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
-      <h1 className="text-5xl font-extrabold mb-4">Welcome to the Kit Kings</h1>
-      <p className="text-lg mb-6">Home of all jerseys, sportswear, and equipment</p>
-      <button className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition">
-        Shop Now
-      </button>
+    <section className="bg-gradient-to-r from-blue-500 to-indigo-600 py-20 text-white">
+      <Container>
+        <div className="flex flex-col items-center justify-center text-center">
+          <h1 className="mb-4 text-5xl font-extrabold">
+            Welcome to the Kit Kings
+          </h1>
+
+          <p className="mb-6 text-lg">
+            Home of all jerseys, sportswear, and equipment
+          </p>
+
+          <button className="rounded-lg bg-white px-6 py-3 font-semibold text-blue-600 transition hover:bg-gray-200">
+            Shop Now
+          </button>
+        </div>
+      </Container>
     </section>
   );
 }
