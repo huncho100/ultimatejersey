@@ -14,7 +14,7 @@ export default function Home() {
             Home of all jerseys, sportswear, and equipment
           </p>
 
-          <Button variant="outline" size="lg">
+          <Button size="lg">
             Shop Now
           </Button>
         </div>
