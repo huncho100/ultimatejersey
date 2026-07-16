@@ -21,7 +21,6 @@ jobs:
           lfs: false
       - name: Fix node_modules permissions
         run: chmod -R +x node_modules/.bin/
-        working-directory: ./ultimatejersey-fe
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
