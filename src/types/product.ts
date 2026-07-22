@@ -7,7 +7,7 @@ export interface Product {
   sport: string;
   category: string;
 
-  // Optional metadata
+  // Metadata
   league?: string;
   brand?: string;
 
@@ -18,8 +18,15 @@ export interface Product {
   // Reviews
   rating: number;
 
-  // Image
+  // Images
   image: string;
+  gallery?: string[];
+
+  // Description
+  description?: string;
+
+  // Sizes
+  sizes?: string[];
 
   // Status
   isNew?: boolean;

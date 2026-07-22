@@ -34,6 +34,18 @@ export const footballProducts: Product[] = [
 
     image: manUnitedHome,
 
+    // NEW (Product Details Page)
+    gallery: [
+      manUnitedHome,
+      manUnitedHome,
+      manUnitedHome,
+    ],
+
+    description:
+      "Official Manchester United 2025/26 Home Jersey crafted by Adidas. Made with lightweight breathable performance fabric and authentic club detailing for maximum comfort on match day or everyday wear.",
+
+    sizes: ["S", "M", "L", "XL"],
+
     isFeatured: true,
     isNew: true,
     isBestSeller: true,

@@ -11,33 +11,37 @@ import ProductDetails from "./pages/ProductDetails";
 export default function App() {
   return (
     <Router>
-      <Navbar />
+      <div className="flex min-h-screen flex-col">
 
-      <main className="max-w-7xl mx-auto px-4">
-        <Routes>
-          <Route
-            path="/"
-            element={<Home />}
-          />
+        <Navbar />
 
-          <Route
-            path="/products"
-            element={<Products />}
-          />
+        <main className="mx-auto w-full max-w-7xl flex-1 px-4">
+          <Routes>
+            <Route
+              path="/"
+              element={<Home />}
+            />
 
-          <Route
-            path="/products/:id"
-            element={<ProductDetails />}
-          />
+            <Route
+              path="/products"
+              element={<Products />}
+            />
 
-          <Route
-            path="/clubs"
-            element={<Clubs />}
-          />
-        </Routes>
-      </main>
+            <Route
+              path="/products/:id"
+              element={<ProductDetails />}
+            />
 
-      <Footer />
+            <Route
+              path="/clubs"
+              element={<Clubs />}
+            />
+          </Routes>
+        </main>
+
+        <Footer />
+
+      </div>
     </Router>
   );
 }
