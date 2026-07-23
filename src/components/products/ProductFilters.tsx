@@ -7,15 +7,62 @@ import {
 
 interface ProductFiltersProps {
   open: boolean;
+
+  // Category
+  selectedCategories: string[];
+  onCategoryChange: (category: string) => void;
+
+  // League
+  selectedLeagues: string[];
+  onLeagueChange: (league: string) => void;
+
+  // Brand
+  selectedBrands: string[];
+  onBrandChange: (brand: string) => void;
+
+  // Price
+  maxPrice: number;
+  onPriceChange: (price: number) => void;
+
+  // Reset
+  onReset: () => void;
 }
 
 export default function ProductFilters({
   open,
+  selectedCategories,
+  onCategoryChange,
+  selectedLeagues,
+  onLeagueChange,
+  selectedBrands,
+  onBrandChange,
+  maxPrice,
+  onPriceChange,
+  onReset,
 }: ProductFiltersProps) {
   const [categoryOpen, setCategoryOpen] = useState(true);
   const [leagueOpen, setLeagueOpen] = useState(true);
   const [brandOpen, setBrandOpen] = useState(true);
   const [priceOpen, setPriceOpen] = useState(true);
+
+  const categories = [
+    "Home",
+    "Away",
+    "Third Kit",
+    "Player Edition",
+  ];
+
+  const leagues = [
+    "Premier League",
+    "La Liga",
+    "NBA",
+  ];
+
+  const brands = [
+    "Nike",
+    "Adidas",
+    "Puma",
+  ];
 
   return (
     <aside
@@ -36,7 +83,10 @@ export default function ProductFilters({
             Filters
           </h2>
 
-          <button className="flex items-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-700">
+          <button
+            onClick={onReset}
+            className="flex items-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-700"
+          >
             <RotateCcw size={16} />
             Reset
           </button>
@@ -65,24 +115,23 @@ export default function ProductFilters({
 
             <div className="mt-4 space-y-3">
 
-              {[
-                "Home",
-                "Away",
-                "Third Kit",
-                "Player Edition",
-              ].map((item) => (
+              {categories.map((item) => (
+
                 <label
                   key={item}
                   className="flex items-center gap-3 text-sm"
                 >
                   <input
                     type="checkbox"
-                    className="h-4 w-4 rounded"
+                    checked={selectedCategories.includes(item)}
+                    onChange={() => onCategoryChange(item)}
+                    className="h-4 w-4 rounded accent-blue-600"
                   />
 
                   {item}
 
                 </label>
+
               ))}
 
             </div>
@@ -113,23 +162,23 @@ export default function ProductFilters({
 
             <div className="mt-4 space-y-3">
 
-              {[
-                "Premier League",
-                "La Liga",
-                "NBA",
-              ].map((item) => (
+              {leagues.map((league) => (
+
                 <label
-                  key={item}
+                  key={league}
                   className="flex items-center gap-3 text-sm"
                 >
                   <input
                     type="checkbox"
-                    className="h-4 w-4 rounded"
+                    checked={selectedLeagues.includes(league)}
+                    onChange={() => onLeagueChange(league)}
+                    className="h-4 w-4 rounded accent-blue-600"
                   />
 
-                  {item}
+                  {league}
 
                 </label>
+
               ))}
 
             </div>
@@ -160,23 +209,23 @@ export default function ProductFilters({
 
             <div className="mt-4 space-y-3">
 
-              {[
-                "Nike",
-                "Adidas",
-                "Puma",
-              ].map((item) => (
+              {brands.map((brand) => (
+
                 <label
-                  key={item}
+                  key={brand}
                   className="flex items-center gap-3 text-sm"
                 >
                   <input
                     type="checkbox"
-                    className="h-4 w-4 rounded"
+                    checked={selectedBrands.includes(brand)}
+                    onChange={() => onBrandChange(brand)}
+                    className="h-4 w-4 rounded accent-blue-600"
                   />
 
-                  {item}
+                  {brand}
 
                 </label>
+
               ))}
 
             </div>
@@ -204,20 +253,26 @@ export default function ProductFilters({
           </button>
 
           {priceOpen && (
+
             <>
               <input
                 type="range"
                 min={50}
                 max={250}
-                defaultValue={250}
+                step={10}
+                value={maxPrice}
+                onChange={(e) =>
+                  onPriceChange(Number(e.target.value))
+                }
                 className="w-full accent-blue-600"
               />
 
               <div className="mt-3 flex justify-between text-sm text-slate-500">
                 <span>$50</span>
-                <span>$250</span>
+                <span>${maxPrice}</span>
               </div>
             </>
+
           )}
 
         </section>

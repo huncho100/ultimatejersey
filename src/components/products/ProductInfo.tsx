@@ -1,4 +1,11 @@
-import { Star, Trophy, Shirt, Tag } from "lucide-react";
+import {
+  Star,
+  Trophy,
+  Shirt,
+  Tag,
+  CheckCircle,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
 import ProductPrice from "./ProductPrice";
 import ProductSizes from "./ProductSizes";
@@ -15,38 +22,79 @@ export default function ProductInfo({
   product,
 }: ProductInfoProps) {
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
+
+      {/* Breadcrumb */}
+
+      <nav className="flex items-center gap-2 text-sm text-slate-500">
+        <Link
+          to="/"
+          className="hover:text-blue-600"
+        >
+          Home
+        </Link>
+
+        <span>/</span>
+
+        <Link
+          to="/products"
+          className="hover:text-blue-600"
+        >
+          Products
+        </Link>
+
+        <span>/</span>
+
+        <span className="font-medium text-slate-700">
+          {product.team}
+        </span>
+      </nav>
 
       {/* Product Header */}
 
       <div>
 
-        <h1 className="text-3xl font-extrabold leading-tight text-slate-900">
+        <h1 className="text-4xl font-extrabold leading-tight text-slate-900">
           {product.team}{" "}
           <span className="font-semibold text-slate-600">
             {product.name}
           </span>
         </h1>
 
-        <div className="mt-2 flex items-center gap-2">
+        <div className="mt-4 flex flex-wrap items-center gap-4">
 
-          <Star
-            size={16}
-            fill="currentColor"
-            className="text-amber-500"
-          />
+          <div className="flex items-center gap-2">
 
-          <span className="text-sm font-semibold text-slate-700">
-            {product.rating}
-          </span>
+            <Star
+              size={18}
+              fill="currentColor"
+              className="text-amber-500"
+            />
+
+            <span className="font-semibold text-slate-700">
+              {product.rating}
+            </span>
+
+            <span className="text-sm text-slate-500">
+              (128 Reviews)
+            </span>
+
+          </div>
+
+          {product.inStock && (
+            <div className="flex items-center gap-2 rounded-full bg-green-50 px-3 py-1 text-sm font-semibold text-green-700">
+              <CheckCircle size={16} />
+              In Stock
+            </div>
+          )}
 
         </div>
 
       </div>
 
-      {/* Product Badges */}
+      {/* Product Tags */}
 
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-3">
 
         <span className="flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-700">
           ⚽ {product.sport}
@@ -73,16 +121,32 @@ export default function ProductInfo({
 
       </div>
 
+      <hr className="border-slate-200" />
+
+      {/* Price */}
+
       <ProductPrice
         price={product.price}
         oldPrice={product.oldPrice}
       />
 
+      <hr className="border-slate-200" />
+
+      {/* Sizes */}
+
       <ProductSizes
         sizes={product.sizes}
       />
 
+      <hr className="border-slate-200" />
+
+      {/* Quantity */}
+
       <QuantitySelector />
+
+      <hr className="border-slate-200" />
+
+      {/* Actions */}
 
       <ProductActions />
 
