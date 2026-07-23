@@ -20,32 +20,40 @@ export default function ProductGallery({
   }, [image, gallery]);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
 
       {/* Main Image */}
 
-      <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-
+      <div
+        className="
+          overflow-hidden
+          rounded-3xl
+          border
+          border-slate-200
+          bg-white
+          p-8
+          shadow-sm
+        "
+      >
         <img
           src={selectedImage}
           alt={name}
           className="
             mx-auto
-            h-[300px]
+            h-[450px]
             w-full
             object-contain
-            transition-transform
-            duration-300
+            transition-all
+            duration-500
             hover:scale-105
           "
         />
-
       </div>
 
       {/* Thumbnails */}
 
       {images.length > 1 && (
-        <div className="flex flex-wrap justify-center gap-3">
+        <div className="flex flex-wrap justify-center gap-4">
 
           {images.map((img, index) => (
             <button
@@ -53,24 +61,26 @@ export default function ProductGallery({
               onClick={() => setSelectedImage(img)}
               className={`
                 overflow-hidden
-                rounded-xl
+                rounded-2xl
                 border-2
                 bg-white
-                p-1
+                p-2
                 transition-all
                 duration-300
+                hover:-translate-y-1
+                hover:shadow-lg
 
                 ${
                   selectedImage === img
-                    ? "border-blue-600 shadow-md"
-                    : "border-slate-200 hover:border-blue-400"
+                    ? "scale-105 border-blue-600 shadow-lg"
+                    : "border-slate-200"
                 }
               `}
             >
               <img
                 src={img}
                 alt={`${name} ${index + 1}`}
-                className="h-14 w-14 object-contain"
+                className="h-20 w-20 object-contain"
               />
             </button>
           ))}
